@@ -1,0 +1,166 @@
+<!DOCTYPE html lang="en">
+<head>
+<style type="text/css">
+body,
+html {
+	margin:0;
+	padding:0;
+	color:#000;
+	background:#a7a09a;
+}
+#wrap {
+	width:1450px;
+	margin:0 auto;
+	background:#0000c0;
+}
+#header {
+	padding:5px 10px;
+	background:#ddd;
+}
+h1 {
+ margin:0;
+}
+#main {
+	float:right;
+	width:1180px;
+	padding:10px;
+	background-color:#F0F0C0;
+}
+h2 {
+	margin:0 0 1em;
+}
+#sidebar {
+	float:left;
+	width:230px;
+	padding:10px;
+	background:#0000c0;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+<div id="header"><center><h1>CW_CC_Button.bas</h1></center></div>
+<div id="main">
+<pre style = "font-size:15px">
+<span style = "color:black">     1| </span><span style = "color:green">' ########################################################################################</span>
+<span style = "color:black">     2| </span><span style = "color:green">' Microsoft Windows</span>
+<span style = "color:black">     3| </span><span style = "color:green">' File: CW_CC_Button.bas</span>
+<span style = "color:black">     4| </span><span style = "color:green">' Contents: CWindow button </span>
+<span style = "color:black">     5| </span><span style = "color:green">' Compiler: Ported to bc9Basic jcfuller 08/18/2016  </span>
+<span style = "color:black">     6| </span><span style = "color:green">' Copyright (c) 2016 José Roca. Freeware. Use at your own risk.</span>
+<span style = "color:black">     7| </span><span style = "color:green">' THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER</span>
+<span style = "color:black">     8| </span><span style = "color:green">' EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF</span>
+<span style = "color:black">     9| </span><span style = "color:green">' MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span style = "color:black">    10| </span><span style = "color:green">' ########################################################################################</span>
+<span style = "color:black">    11| </span><span style = "color:brown">$NOMAIN</span>
+<span style = "color:black">    12| </span><span style = "color:brown">$CPP</span>
+<span style = "color:black">    13| </span><span style = "color:brown">$ONEXIT</span> <span style = "color:maroon">"ULEX.EXE $FILE$.CPP TCHARXLATER_VC.TXT"</span>
+<span style = "color:black">    14| </span><span style = "color:brown">$ONEXIT</span> <span style = "color:maroon">"TCLIB.BAT $FILE$"</span>
+<span style = "color:black">    15| </span><span style = "color:green">'==============================================================================    </span>
+<span style = "color:black">    16| </span><span style = "color:brown">$HEADER</span>
+<span style = "color:black">    17| </span>    <span style = "color:purple">#include</span> <span style = "color:black"><</span><span style = "color:black">commctrl.h</span><span style = "color:black">></span>                    <span style = "color:black">/</span><span style = "color:black">*</span><span style = "color:green">'For CWindow*/ </span>
+<span style = "color:black">    18| </span>    <span style = "color:purple">#pragma</span> <span style = "color:black">comment</span><span style = "color:black">(</span><span style = "color:black">lib</span><span style = "color:black">,</span><span style = "color:maroon">"comctl32.lib"</span><span style = "color:black">)</span>        <span style = "color:black">/</span><span style = "color:black">*</span><span style = "color:green">'For CWindow*/</span>
+<span style = "color:black">    19| </span>    <span style = "color:purple">#pragma</span> <span style = "color:black">comment</span><span style = "color:black">(</span><span style = "color:black">lib</span><span style = "color:black">,</span><span style = "color:maroon">"gdi32.lib"</span><span style = "color:black">)</span>        <span style = "color:black">/</span><span style = "color:black">*</span><span style = "color:green">'For CWindow*/</span>
+<span style = "color:black">    20| </span>    <span style = "color:purple">#pragma</span> <span style = "color:black">comment</span><span style = "color:black">(</span><span style = "color:black">lib</span><span style = "color:black">,</span><span style = "color:maroon">"advapi32.lib"</span><span style = "color:black">)</span>        <span style = "color:black">/</span><span style = "color:black">*</span><span style = "color:green">'For DPI aware check*/</span>
+<span style = "color:black">    21| </span><span style = "color:brown">$HEADER</span>
+<span style = "color:black">    22| </span><span style = "color:green">'==============================================================================</span>
+<span style = "color:black">    23| </span><span style = "color:green">'------------------------------------------------------------------------------</span>
+<span style = "color:black">    24| </span><span style = "color:brown">$Include</span> <span style = "color:black"><</span><span style = "color:black">Afx</span><span style = "color:black">/</span><span style = "color:black">CWindow.bi</span><span style = "color:black">></span>
+<span style = "color:black">    25| </span><span style = "color:green">'------------------------------------------------------------------------------</span>
+<span style = "color:black">    26| </span><span style = "color:green">'==============================================================================</span>
+<span style = "color:black">    27| </span><span style = "color:blue">Function</span> <span style = "color:saddlebrown">WinMain</span><span style = "color:black">(</span><span style = "color:black">)</span>
+<span style = "color:black">    28| </span>    <span style = "color:blue">Dim</span> <span style = "color:blue">As</span> <span style = "color:teal">int</span> <span style = "color:black">iRetVal</span>
+<span style = "color:black">    29| </span>    <span style = "color:blue">Dim</span> <span style = "color:blue">As</span> <span style = "color:teal">HWND</span> <span style = "color:black">hWin</span><span style = "color:black">,</span><span style = "color:black">hButton</span>
+<span style = "color:black">    30| </span>
+<span style = "color:black">    31| </span>    <span style = "color:blue">Raw</span> <span style = "color:blue">As</span> <span style = "color:black">CWindow</span> <span style = "color:black">pWindow</span>
+<span style = "color:black">    32| </span>    <span style = "color:black">hWin</span> <span style = "color:black">=</span> <span style = "color:black">pWindow.Create</span><span style = "color:black">(</span><span style = "color:dodgerblue">NULL</span><span style = "color:black">,</span> <span style = "color:maroon">"CWindow with a button"</span><span style = "color:black">,</span> <span style = "color:black">&</span><span style = "color:black">WndProc</span><span style = "color:black">)</span>
+<span style = "color:black">    33| </span>    <span style = "color:black">pWindow.SetClientSize</span><span style = "color:black">(</span><span style = "color:purple">500</span><span style = "color:black">,</span><span style = "color:purple">320</span><span style = "color:black">)</span>
+<span style = "color:black">    34| </span>    <span style = "color:black">pWindow.Center</span><span style = "color:black">(</span><span style = "color:black">)</span>
+<span style = "color:black">    35| </span>
+<span style = "color:black">    36| </span>    <span style = "color:green">'Add a button</span>
+<span style = "color:black">    37| </span>    <span style = "color:black">hButton</span> <span style = "color:black">=</span> <span style = "color:black">pWindow.AddControl</span><span style = "color:black">(</span><span style = "color:maroon">"Button"</span><span style = "color:black">,</span><span style = "color:black">hWin</span> <span style = "color:black">,</span> <span style = "color:black">IDCANCEL</span><span style = "color:black">,</span> <span style = "color:maroon">"&Close"</span><span style = "color:black">,</span> <span style = "color:purple">350</span><span style = "color:black">,</span> <span style = "color:purple">250</span><span style = "color:black">,</span> <span style = "color:purple">75</span><span style = "color:black">,</span> <span style = "color:purple">23</span><span style = "color:black">)</span>
+<span style = "color:black">    38| </span>    <span style = "color:black">iRetVal</span> <span style = "color:black">=</span> <span style = "color:black">pWindow.Do_Events</span><span style = "color:black">(</span><span style = "color:black">CmdShow</span><span style = "color:black">)</span>
+<span style = "color:black">    39| </span>    <span style = "color:blue">Function</span> <span style = "color:black">=</span> <span style = "color:black">iRetVal</span>
+<span style = "color:black">    40| </span><span style = "color:blue">End</span> <span style = "color:blue">Function</span>
+<span style = "color:black">    41| </span><span style = "color:green">'==============================================================================</span>
+<span style = "color:black">    42| </span><span style = "color:teal">CallBack</span> <span style = "color:blue">Function</span> <span style = "color:black">WndProc</span><span style = "color:black">(</span><span style = "color:black">)</span>
+<span style = "color:black">    43| </span>    <span style = "color:blue">Select</span> <span style = "color:blue">Case</span> <span style = "color:teal">CBMSG</span>
+<span style = "color:black">    44| </span>        <span style = "color:blue">Case</span> <span style = "color:dodgerblue">WM_COMMAND</span>
+<span style = "color:black">    45| </span>            <span style = "color:blue">Select</span> <span style = "color:blue">Case</span> <span style = "color:teal">CBCTL</span>
+<span style = "color:black">    46| </span>                <span style = "color:blue">Case</span> <span style = "color:black">IDCANCEL</span>
+<span style = "color:black">    47| </span>                    <span style = "color:blue">If</span> <span style = "color:teal">CBCTLMSG</span> <span style = "color:black">=</span> <span style = "color:black">BN_CLICKED</span> <span style = "color:blue">Then</span>
+<span style = "color:black">    48| </span>                        <span style = "color:saddlebrown">SendMessage</span><span style = "color:black">(</span><span style = "color:teal">CBHNDL</span><span style = "color:black">,</span><span style = "color:dodgerblue">WM_CLOSE</span><span style = "color:black">,</span><span style = "color:purple">0</span><span style = "color:black">,</span><span style = "color:purple">0</span><span style = "color:black">)</span>
+<span style = "color:black">    49| </span>                        <span style = "color:blue">Exit</span> <span style = "color:blue">Function</span>
+<span style = "color:black">    50| </span>                    <span style = "color:blue">EndIf</span>
+<span style = "color:black">    51| </span>            <span style = "color:blue">End</span> <span style = "color:blue">Select</span>
+<span style = "color:black">    52| </span>        <span style = "color:blue">Case</span> <span style = "color:dodgerblue">WM_DESTROY</span>
+<span style = "color:black">    53| </span>            <span style = "color:saddlebrown">PostQuitMessage</span><span style = "color:black">(</span><span style = "color:purple">0</span><span style = "color:black">)</span>
+<span style = "color:black">    54| </span>            <span style = "color:blue">Exit</span> <span style = "color:blue">Function</span>
+<span style = "color:black">    55| </span>    <span style = "color:blue">End</span> <span style = "color:blue">Select</span>
+<span style = "color:black">    56| </span><span style = "color:blue">End</span> <span style = "color:blue">Function</span>
+<span style = "color:black">    57| </span>
+</pre>
+</div>
+<div id="sidebar">
+<pre style = "font-size:15px;color:yellow">
+<!--1-->
+José Roca Demo ported
+to bc9Basic.
+<!--4-->
+<!--5-->
+#11 $NOMAIN no default
+WinMain() function
+#12 create c++ app
+#13 call the ULEX utility
+to create a unicode app
+<!--11-->
+#14 call the TCLIB batch
+file to compile the app
+<!--14-->
+#16-#21 needed includes
+and libraries wrapped 
+with $HEADER directives
+<!--18-->
+<!--19-->
+<!--20-->
+<!--21-->
+<!--22-->
+#24 Include the Cwindow
+ Framework
+<!--25-->
+#27-#40 WinMain Function
+<!--27-->
+#28-#29 Dim variables
+<!--29-->
+#31 always use Raw instead
+of Dim for CWindow var
+<!--32-->
+<!--33-->
+<!--34-->
+<!--35-->
+<!--36-->
+<!--37-->
+<!--38-->
+<!--39-->
+<!--40-->
+<!--41-->
+<!--42-->
+<!--43-->
+<!--44-->
+<!--45-->
+<!--46-->
+<!--47-->
+<!--48-->
+<!--49-->
+<!--50-->
+<!--51-->
+<!--52-->
+<!--53-->
+<!--54-->
+<!--55-->
+<!--56-->
+<!--57-->
+</pre>
+</div>
+</body>
+</html>
