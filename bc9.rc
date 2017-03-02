@@ -1,0 +1,26 @@
+#define IDR_VERSION1 1
+
+IDR_VERSION1 VERSIONINFO
+FILEVERSION 9,2,5,9
+PRODUCTVERSION 9,2,5,9
+FILEOS 0x00000008
+FILETYPE 0x00000000
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "FFFF0000"
+    BEGIN
+      VALUE "FileVersion", "9.2.5.9\0"
+      VALUE "ProductVersion", "9.2.5.9\0"
+      VALUE "FileDescription", "bc9Basic BASIC to C/C++ Translator\0"
+      VALUE "LegalCopyright", "Portions Copyright © 1999 Kevin Diggins\0"
+      VALUE "OriginalFilename", "bc9.exe\0"
+      VALUE "ProductName", "bc9Basic\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0xFFFF, 0x0000
+  END
+END
+
